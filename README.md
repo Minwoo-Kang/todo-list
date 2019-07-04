@@ -1,68 +1,80 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can download project using :
 
-## Available Scripts
+### `git clone https://github.com/Minwoo-Kang/todo-list.git`
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+----
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+프로젝트 목표 :
 
-### `npm test`
+`List` + `props` + `state` 를 이용해 간단한 To-Do List 를 만든다. 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Component 구조 :
 
-### `npm run build`
+![component_architecture](./image/component_architecture.png)
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+최종 결과물 : 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+![result.png](./image/result.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+----
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Step 1. Template 만들기 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+=> Wrapper vs Template
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+: `React`에서 `JSX`를 쓰기 위해선 하나의 `Component` 만을 return 할 수 있다.  
 
-## Learn More
+![single_component](./image/single_component.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+두 개 이상의 `Component` 를 쓰기 위해 여러 개의 `Component` 를 감싸는 형식으로 많이 사용한다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+단순히 감싸기 위한 `Wrapper` 와 `Template`방식이 있다.
 
-### Code Splitting
+* `Wrapper`
+```
+<TodoListWrapper><Form/><TodoList/></TodoListWrapper>
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* `Template`
 
-### Analyzing the Bundle Size
+![template](./image/template.png)
+```
+<TodoListTemplate form ={<Form />}> This data will be child in Template!</TodoListTemplate>
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+`Template`과 `Wrapper`의 차이는 단순히 감싸기만 하냐(`Wrapper`) 부모로 부터 전달받은 `props`를 직접 변수로 전달받아 
+특정 형태를 갖추느냐(`Template`)의 차이이다.
 
-### Making a Progressive Web App
+어떠한 것을 선택해도 상관은 없으나, `Template`을 선택 할시 **각각의** `Component`에 대한 style 이나 
+수정사항에 대해 유연하게 대처 할 수 있다고 한다.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+------
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Step 2. Item 입력 Form 만들기
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+----
 
-### `npm run build` fails to minify
+Step 3. TodoItemList & TodoItem 만들기
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+----
+
+Step 4. 상태 추가하기
+=> 서로다른 Component 간 data 주고받기
+
+(부모 Component 이용 !)
+
+=> `push`를 쓰면 안되고 `concat`을 써야함 (swallow copy vs depp copy)
+
+----
+
+Step 5. Call back 함수 구현하기
+
+ 
